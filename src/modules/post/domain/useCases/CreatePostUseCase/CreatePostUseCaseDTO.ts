@@ -5,7 +5,7 @@ export interface ICreatePostUseCase {
 
     description: string;
 
-    like: string;
+    like: number;
 
     user_id: string;
 }

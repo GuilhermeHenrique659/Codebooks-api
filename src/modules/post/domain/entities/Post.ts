@@ -9,7 +9,7 @@ export class Post {
 
     public description: string;
 
-    public like: string;
+    public like: number;
 
     public user_id: string;
 
