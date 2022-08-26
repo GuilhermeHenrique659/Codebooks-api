@@ -1,4 +1,4 @@
-import  { DataSource } from 'typeorm'
+import { DataSource } from 'typeorm'
 import { userEntitySchema } from '../../../modules/users/infra/typeorm/entities/UserSchema'
 import { CreateUser1661280513221 } from './migrations/1661280513221-CreateUser'
 
@@ -10,7 +10,7 @@ export const connection = new DataSource({
     password: "docker",
     database: "codebooks",
     synchronize: true,
-    logging: true,
+    logging: false,
     migrations: [
         CreateUser1661280513221
     ],
