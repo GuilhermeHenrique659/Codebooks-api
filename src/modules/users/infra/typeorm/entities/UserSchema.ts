@@ -1,5 +1,4 @@
-import { EntitySchema } from 'typeorm'
-import { IUser } from '../../../domain/entities/IUser'
+import { EntitySchema } from 'typeorm';
 import { User } from '../../../domain/entities/User';
 
 
