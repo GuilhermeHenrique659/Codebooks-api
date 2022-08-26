@@ -17,11 +17,11 @@ export class CreateSessionUseCase {
     public async execute({ email, password }: ICreateSessionUseCaseDTO): Promise<object> {
         const user = await this.userRepository.findByEmail(email);
 
-        if (!user) throw new AppError("Email not found.");
+        if (!user) throw new AppError("Email not found.", 401);
 
         const passwordConfirm = await this.hashProvider.compareHash(password, user.password);
 
-        if (!passwordConfirm) throw new AppError("Password incorrect.");
+        if (!passwordConfirm) throw new AppError("Password incorrect.", 401);
 
         const token = generateToken(user);
 

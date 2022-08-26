@@ -12,7 +12,7 @@ export class SessionController {
 
         const createSession = this._usecases.getCreateSessionUseCase()
 
-        const token = createSession.execute({ email, password });
+        const token = await createSession.execute({ email, password });
 
         return response.json(token)
     }
