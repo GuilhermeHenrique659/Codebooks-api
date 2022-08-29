@@ -14,7 +14,14 @@ export class CreatePostUseCase {
 
         if (!user) throw new AppError('User is not found.');
 
-        const post = new Post(data);
+        const post = new Post({
+            title: data.title,
+            description: data.description,
+            like: data.like,
+            user: user,
+            user_id: user.id
+        });
+
 
         await this.postRepository.store(post);
 

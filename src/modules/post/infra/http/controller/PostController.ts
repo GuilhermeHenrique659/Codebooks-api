@@ -9,9 +9,7 @@ export class PostController {
         const { title, description } = request.body;
         const user_id = request.user.id;
 
-        console.log(user_id);
-
-        const post = this.createPost.execute({
+        const post = await this.createPost.execute({
             title: title,
             description: description,
             like: 0,

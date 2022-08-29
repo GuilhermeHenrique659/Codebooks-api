@@ -8,5 +8,5 @@ const hahsprovider = new HashProvider();
 const userUseCaseFactory = new UserUseCaseFactory(userRepository, hahsprovider);
 
 
-export { userUseCaseFactory };
+export { userUseCaseFactory, userRepository };
 
