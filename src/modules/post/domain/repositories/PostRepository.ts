@@ -19,4 +19,12 @@ export class PostRepository implements IPostRepository {
             }
         });
     }
+
+    public async findById(id: string): Promise<Post | null> {
+        return this.ormRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+    }
 }

@@ -31,7 +31,6 @@ describe('Teste Feed Post', () => {
             title: 'teste',
             description: 'teste description',
             like: 10,
-            user: user,
             user_id: user.id
         }));
 
@@ -39,7 +38,6 @@ describe('Teste Feed Post', () => {
             title: 'teste teste',
             description: 'teste description teste',
             like: 100,
-            user: user,
             user_id: user.id
         }));
 
