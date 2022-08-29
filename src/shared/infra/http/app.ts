@@ -1,7 +1,6 @@
 import { errors } from 'celebrate';
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import "express-async-errors";
-import AppError from "../../errors/AppError";
 import routes from "./routes";
 
 
@@ -12,7 +11,7 @@ app.use(routes);
 
 app.use(errors());
 
-app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+/* app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     const serverStatusError = 500;
     if (error instanceof AppError) {
         return response.status(error.statusCode).json({
@@ -25,6 +24,6 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
         message: "internal server error!"
     })
 });
-
+ */
 
 export default app 

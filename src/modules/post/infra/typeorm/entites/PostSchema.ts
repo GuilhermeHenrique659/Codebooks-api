@@ -39,7 +39,7 @@ export const PostEntitySchema = new EntitySchema<Post>({
             joinColumn: {
                 name: 'id'
             },
-            cascade: true
+            cascade: true,
         }
     }
 });

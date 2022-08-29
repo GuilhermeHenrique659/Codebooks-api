@@ -13,11 +13,15 @@ export class PostRepository implements IPostRepository {
     }
 
     public async findAll(): Promise<Post[]> {
-        return this.ormRepository.find({
+        const post = await this.ormRepository.find({
             relations: {
                 user: true
             }
         });
+
+        console.log(post);
+
+        return post
     }
 
     public async findById(id: string): Promise<Post | null> {

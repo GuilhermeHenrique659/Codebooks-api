@@ -20,4 +20,14 @@ export const userEntitySchema = new EntitySchema<User>({
             type: String
         }
     },
+    relations: {
+        posts: {
+            type: 'many-to-one',
+            target: 'post',
+            joinColumn: {
+                name: 'id'
+            },
+            inverseSide: 'post'
+        }
+    }
 });

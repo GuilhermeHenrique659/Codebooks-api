@@ -24,7 +24,7 @@ export const connection = new DataSource({
         addUserIdToPost1661531322664,
         CreateCode1661789200651,
         AddPostToCode1661789518704,
-        AddUserToCode1661789848635
+        AddUserToCode1661789848635,
     ],
     entities: [
         userEntitySchema,
