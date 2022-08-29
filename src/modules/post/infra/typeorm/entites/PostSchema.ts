@@ -34,7 +34,7 @@ export const PostEntitySchema = new EntitySchema<Post>({
     },
     relations: {
         user: {
-            type: 'many-to-one',
+            type: 'one-to-many',
             target: 'users',
             joinColumn: {
                 name: 'id'

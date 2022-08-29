@@ -1,15 +1,25 @@
 import { Request, Response } from "express";
-import { CreatePostUseCase } from "../../../domain/useCases/CreatePostUseCase/CreatePostUseCase";
+import { PostUseCaseFactory } from "../../../domain/useCases/PostUseCaseFactory";
 
 
 export class PostController {
-    constructor(private createPost: CreatePostUseCase) { }
+    constructor(private _postfactory: PostUseCaseFactory) { }
+
+    public async index(request: Request, response: Response): Promise<Response> {
+        const listPost = this._postfactory.GetListPostUseCase();
+
+        const posts = await listPost.execute();
+
+        return response.json(posts);
+    }
 
     public async create(request: Request, response: Response): Promise<Response> {
         const { title, description } = request.body;
         const user_id = request.user.id;
 
-        const post = await this.createPost.execute({
+        const createPost = this._postfactory.GetCreatePostUseCase();
+
+        const post = await createPost.execute({
             title: title,
             description: description,
             like: 0,
@@ -18,4 +28,5 @@ export class PostController {
 
         return response.json(post);
     }
+
 }
