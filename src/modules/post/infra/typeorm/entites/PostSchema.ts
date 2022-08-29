@@ -18,6 +18,9 @@ export const PostEntitySchema = new EntitySchema<Post>({
         like: {
             type: Number
         },
+        user_id: {
+            type: 'uuid',
+        },
         created_at: {
             name: 'created_at',
             type: 'timestamp with time zone',
@@ -30,9 +33,14 @@ export const PostEntitySchema = new EntitySchema<Post>({
         }
     },
     relations: {
-        user_id: {
+        user: {
             type: 'one-to-many',
-            target: 'users'
+            target: 'users',
+            joinColumn: {
+                name: 'id'
+            },
+            cascade: true
         }
     }
 });
+

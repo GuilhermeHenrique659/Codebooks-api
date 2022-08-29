@@ -2,8 +2,7 @@ import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
 
-export class MockUserRepository implements IUserRepository
-{
+export class MockUserRepository implements IUserRepository {
     private usersdb: User[] = []
 
 
@@ -12,9 +11,19 @@ export class MockUserRepository implements IUserRepository
     }
 
     public async findByEmail(email: string): Promise<User | null> {
-        try {            
-            const user = this.usersdb.find(user => user.email === email)
-            
+        try {
+            const user = this.usersdb.find((user) => user.email === email)
+
+            if (user === undefined) return null
+            return user;
+        } catch {
+            return null
+        }
+    }
+    public async findById(id: string): Promise<User | null> {
+        try {
+            const user = this.usersdb.find((user) => user.id === id)
+
             if (user === undefined) return null
             return user;
         } catch {

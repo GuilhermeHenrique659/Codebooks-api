@@ -1,4 +1,5 @@
-import { uuid } from "uuidv4";
+import { v4 as uuid_v4 } from "uuid";
+import { User } from "../../../users/domain/entities/User";
 
 
 export class Post {
@@ -11,21 +12,21 @@ export class Post {
 
     public like: number;
 
+    public user: User;
+
     public user_id: string;
 
     public created_at?: Date;
 
     public updated_at?: Date;
 
-    constructor(props: Omit<Post, 'id' | 'created_at' | 'updated_at'>,
-        id?: string, created_at?: Date, updated_at?: Date
+    constructor(props: Omit<Post, 'id' | 'created_at' | 'updated_at' | 'user'>,
+        id?: string
     ) {
         Object.assign(this, props);
 
         if (!id) {
-            this.id = uuid();
+            this.id = uuid_v4();
         }
-        this.created_at = created_at;
-        this.updated_at = updated_at;
     }
 }
