@@ -12,7 +12,7 @@ export class Post {
 
     public like: number;
 
-    public user: User;
+    public users: User;
 
     public user_id: string;
 

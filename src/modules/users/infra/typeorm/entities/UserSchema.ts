@@ -27,7 +27,7 @@ export const userEntitySchema = new EntitySchema<User>({
             joinColumn: {
                 name: 'id'
             },
-            inverseSide: 'post'
+            inverseSide: 'user'
         }
     }
 });

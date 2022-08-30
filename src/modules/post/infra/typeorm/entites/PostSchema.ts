@@ -33,13 +33,11 @@ export const PostEntitySchema = new EntitySchema<Post>({
         }
     },
     relations: {
-        user: {
+        users: {
             type: 'one-to-many',
             target: 'users',
-            joinColumn: {
-                name: 'id'
-            },
             cascade: true,
+            inverseSide: 'post'
         }
     }
 });

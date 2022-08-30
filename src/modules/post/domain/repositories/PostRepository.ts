@@ -15,7 +15,7 @@ export class PostRepository implements IPostRepository {
     public async findAll(): Promise<Post[]> {
         const post = await this.ormRepository.find({
             relations: {
-                user: true
+                users: true
             }
         });
 
