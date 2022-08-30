@@ -1,10 +1,10 @@
-import { Repository } from 'typeorm';
+import { IRepositoryAdapter } from '../../../../shared/infra/adapter/repositories/IRepositoryAdapter';
 import { User } from "../entities/User";
 import { IUserRepository } from "./IUserRepository";
 
 
 export class UserRepository implements IUserRepository {
-    constructor(private _ormRepository: Repository<User>) { }
+    constructor(private _ormRepository: IRepositoryAdapter<User>) { }
 
     public async findByEmail(email: string): Promise<User | null> {
         return this._ormRepository.findOne({

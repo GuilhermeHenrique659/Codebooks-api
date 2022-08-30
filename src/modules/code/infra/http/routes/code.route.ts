@@ -12,4 +12,8 @@ codeRouter.post('/', isAuthenticated, (request, response) => {
     return codecontroller.create(request, response);
 })
 
+codeRouter.get('/:id', isAuthenticated, (request, response) => {
+    return codecontroller.index(request, response);
+})
+
 export default codeRouter;

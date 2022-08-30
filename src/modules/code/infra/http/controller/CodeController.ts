@@ -22,4 +22,16 @@ export class CodeController {
         return response.json(codeOutput);
     }
 
+    public async index(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params
+
+        const listCode = this._useCaseFactory.GetListCodeUseCase();
+
+        const codes = await listCode.execute({
+            post_id: id
+        });
+
+        return response.json(codes);
+    }
+
 }

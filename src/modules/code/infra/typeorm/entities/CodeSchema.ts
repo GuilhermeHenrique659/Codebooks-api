@@ -34,18 +34,20 @@ export const CodeEntitySchema = new EntitySchema<Code>({
     },
     relations: {
         post: {
-            type: 'one-to-many',
+            type: 'many-to-one',
             target: 'post',
             joinColumn: {
-                name: 'id'
+                name: 'post_id',
+                referencedColumnName: 'id'
             },
             cascade: true
         },
         user: {
-            type: 'one-to-many',
+            type: 'many-to-one',
             target: 'users',
             joinColumn: {
-                name: 'id'
+                name: 'user_id',
+                referencedColumnName: 'id'
             },
             onDelete: 'SET NULL',
             onUpdate: 'CASCADE'

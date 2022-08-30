@@ -6,6 +6,7 @@ import { codeRepositoryOrm } from "../../infra/typeorm/CodeRepositoryOrm";
 import { CodeRepository } from "../repositories/CodeRepository";
 import { ICodeRepository } from "../repositories/ICodeRepository";
 import { CreateCodeUseCase } from "./CreateCodeUseCase/CreateCodeUseCase";
+import { ListCodeUseCase } from "./ListCodeUseCase/ListCodeUseCase";
 
 
 export class CodeUseCaseFactory {
@@ -15,6 +16,10 @@ export class CodeUseCaseFactory {
 
     public GetCreateCodeUseCase(): CreateCodeUseCase {
         return new CreateCodeUseCase(this._codeRepository, this._useRepository, this._postRepostiry);
+    }
+
+    public GetListCodeUseCase(): ListCodeUseCase {
+        return new ListCodeUseCase(this._codeRepository);
     }
 }
 

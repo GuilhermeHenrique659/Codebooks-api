@@ -22,10 +22,10 @@ export const userEntitySchema = new EntitySchema<User>({
     },
     relations: {
         posts: {
-            type: 'many-to-one',
+            type: 'one-to-many',
             target: 'post',
             joinColumn: {
-                name: 'id',
+                name: 'id'
             },
             inverseSide: 'users'
         }

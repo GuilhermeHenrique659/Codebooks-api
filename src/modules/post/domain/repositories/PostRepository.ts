@@ -1,10 +1,10 @@
-import { Repository } from "typeorm";
+import { IRepositoryAdapter } from "../../../../shared/infra/adapter/repositories/IRepositoryAdapter";
 import { Post } from "../entities/Post";
 import { IPostRepository } from "./IPostRepository";
 
 
 export class PostRepository implements IPostRepository {
-    constructor(private ormRepository: Repository<Post>) { }
+    constructor(private ormRepository: IRepositoryAdapter<Post>) { }
 
     public async store(post: Post): Promise<void> {
 
@@ -13,15 +13,15 @@ export class PostRepository implements IPostRepository {
     }
 
     public async findAll(): Promise<Post[]> {
-        const post = await this.ormRepository.find({
+        return this.ormRepository.find({
             relations: {
                 users: true
+            },
+            order: {
+                created_at: 'DESC'
             }
         });
 
-        console.log(post);
-
-        return post
     }
 
     public async findById(id: string): Promise<Post | null> {
