@@ -37,7 +37,11 @@ export const PostEntitySchema = new EntitySchema<Post>({
             type: 'one-to-many',
             target: 'users',
             cascade: true,
-            inverseSide: 'post'
+            joinColumn: {
+                name: 'user_id',
+                referencedColumnName: 'id'
+            },
+            inverseSide: 'posts'
         }
     }
 });

@@ -25,9 +25,9 @@ export const userEntitySchema = new EntitySchema<User>({
             type: 'many-to-one',
             target: 'post',
             joinColumn: {
-                name: 'id'
+                name: 'id',
             },
-            inverseSide: 'user'
+            inverseSide: 'users'
         }
     }
 });
