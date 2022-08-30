@@ -1,8 +1,5 @@
 import { IUserRepository } from "../../../users/domain/repositories/IUserRepository";
-import { userRepository } from "../../../users/domain/useCases";
-import { postRepositoryOrm } from "../../infra/typeorm/PostRepostiroyOrm";
 import { IPostRepository } from "../repositories/IPostRepository";
-import { PostRepository } from "../repositories/PostRepository";
 import { CreatePostUseCase } from "./CreatePostUseCase/CreatePostUseCase";
 import { ListPostUseCase } from "./ListPostUseCase/ListPostUseCase";
 
@@ -19,7 +16,3 @@ export class PostUseCaseFactory {
     }
 }
 
-export const postRepository = new PostRepository(postRepositoryOrm);
-const postUseCaseFactory = new PostUseCaseFactory(userRepository, postRepository);
-
-export { postUseCaseFactory };

@@ -1,21 +1,21 @@
-import { Request, Response } from "express";
+import { IHttpRequest, IHttpResponse } from "../../../../../shared/infra/adapter/http/IHttpAdapter";
 import { PostUseCaseFactory } from "../../../domain/useCases/PostUseCaseFactory";
 
 
 export class PostController {
     constructor(private _postfactory: PostUseCaseFactory) { }
 
-    public async index(request: Request, response: Response): Promise<Response> {
+    public async index(httpRequest: IHttpRequest): Promise<IHttpResponse> {
         const listPost = this._postfactory.GetListPostUseCase();
 
         const posts = await listPost.execute();
 
-        return response.json(posts);
+        return { statusCode: 200, body: posts };
     }
 
-    public async create(request: Request, response: Response): Promise<Response> {
-        const { title, description } = request.body;
-        const user_id = request.user.id;
+    public async create(httpRequest: IHttpRequest): Promise<IHttpResponse> {
+        const { title, description } = httpRequest.body;
+        const user_id = httpRequest.user.id;
 
         const createPost = this._postfactory.GetCreatePostUseCase();
 
@@ -26,7 +26,7 @@ export class PostController {
             user_id: user_id
         });
 
-        return response.json(post);
+        return { statusCode: 200, body: post };
     }
 
 }

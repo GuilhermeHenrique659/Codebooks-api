@@ -1,19 +1,22 @@
 import { Router } from "express";
+import { RouteAdapter } from "../../../../../shared/infra/adapter/http/expressRouteAdapter";
 import isAuthenticated from "../../../../../shared/infra/http/middleware/IsAuthenticated";
-import { postUseCaseFactory } from "../../../domain/useCases/PostUseCaseFactory";
+import { userRepository } from "../../../../users/domain/useCases";
+import { PostRepository } from "../../../domain/repositories/PostRepository";
+import { PostUseCaseFactory } from "../../../domain/useCases/PostUseCaseFactory";
+import { postRepositoryOrm } from "../../typeorm/PostRepostiroyOrm";
 import { PostController } from "../controller/PostController";
 
 
-const postController = new PostController(postUseCaseFactory);
+
+const postControllerFactory = (): PostController => {
+    const postRepository = new PostRepository(postRepositoryOrm);
+    const postUseCaseFactory = new PostUseCaseFactory(userRepository, postRepository);
+    return new PostController(postUseCaseFactory);
+}
 
 const postRouter = Router();
 
-postRouter.post("/", isAuthenticated, (request, response) => {
-    return postController.create(request, response);
-});
-
-postRouter.get('/', isAuthenticated, (request, response) => {
-    return postController.index(request, response);
-});
+postRouter.get('/', isAuthenticated, RouteAdapter(postControllerFactory(), 'index'));
 
 export default postRouter;
