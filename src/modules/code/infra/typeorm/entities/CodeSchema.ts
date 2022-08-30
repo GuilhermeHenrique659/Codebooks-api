@@ -1,25 +1,25 @@
 import { EntitySchema } from "typeorm";
-import { Post } from "../../../domain/entities/Post";
+import { Code } from "../../../domain/entities/Code";
 
 
-export const PostEntitySchema = new EntitySchema<Post>({
-    name: 'post',
+export const CodeEntitySchema = new EntitySchema<Code>({
+    name: 'code',
     columns: {
         id: {
             type: 'uuid',
-            primary: true,
+            primary: true
         },
-        title: {
+        code: {
             type: String
         },
-        description: {
+        language: {
             type: String
-        },
-        like: {
-            type: Number
         },
         user_id: {
-            type: 'uuid',
+            type: 'uuid'
+        },
+        post_id: {
+            type: 'uuid'
         },
         created_at: {
             name: 'created_at',
@@ -33,16 +33,24 @@ export const PostEntitySchema = new EntitySchema<Post>({
         }
     },
     relations: {
-        users: {
+        post: {
+            type: 'many-to-one',
+            target: 'post',
+            joinColumn: {
+                name: 'post_id',
+                referencedColumnName: 'id'
+            },
+            cascade: true
+        },
+        user: {
             type: 'many-to-one',
             target: 'users',
-            cascade: true,
             joinColumn: {
                 name: 'user_id',
                 referencedColumnName: 'id'
             },
-            inverseSide: 'posts'
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE'
         }
     }
 });
-
