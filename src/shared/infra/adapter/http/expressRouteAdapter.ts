@@ -1,21 +1,15 @@
 import { Request, Response } from "express";
-import { PostController } from "../../../../modules/post/infra/http/controller/PostController";
+import { IController } from "./IController";
 import { IHttpRequest } from './IHttpAdapter';
 
-export const RouteAdapter = (controller: PostController, method: keyof PostController) => {
+export const RouteAdapter = (controller: IController) => {
     return async (request: Request, response: Response) => {
         const httpRequest: IHttpRequest = {
             body: request.body,
             params: request.params,
-            user: request.user.id
+            user: request.user
         };
-
-        if (method == 'index') {
-            const httpResponse = await controller.index(httpRequest);
-            response.status(httpResponse.statusCode).json(httpResponse.body);
-        } else if (method == 'create') {
-            const httpResponse = await controller.create(httpRequest);
-            response.status(httpResponse.statusCode).json(httpResponse.body);
-        }
+        const httpResponse = await controller.handle(httpRequest);
+        response.status(httpResponse.statusCode).json(httpResponse.body);
     }
 }

@@ -7,7 +7,6 @@ export class PostRepository implements IPostRepository {
     constructor(private ormRepository: IRepositoryAdapter<Post>) { }
 
     public async store(post: Post): Promise<void> {
-
         await this.ormRepository.save(post)
 
     }

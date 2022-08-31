@@ -1,19 +1,13 @@
 import { Router } from "express";
+import { RouteAdapter } from "../../../../../shared/infra/adapter/http/expressRouteAdapter";
 import isAuthenticated from "../../../../../shared/infra/http/middleware/IsAuthenticated";
-import { codeUseCaseFactory } from "../../../domain/useCases/CodeUseCaseFactory";
-import { CodeController } from "../controller/CodeController";
+import { codeControllerFactory } from "../controller/CodeControllerFactory";
 
-
-const codecontroller = new CodeController(codeUseCaseFactory);
 
 const codeRouter = Router();
 
-codeRouter.post('/', isAuthenticated, (request, response) => {
-    return codecontroller.create(request, response);
-})
+codeRouter.post('/', isAuthenticated, RouteAdapter(codeControllerFactory.getCreate()));
 
-codeRouter.get('/:id', isAuthenticated, (request, response) => {
-    return codecontroller.index(request, response);
-})
+codeRouter.get('/:id', isAuthenticated, RouteAdapter(codeControllerFactory.getIndex()));
 
 export default codeRouter;
