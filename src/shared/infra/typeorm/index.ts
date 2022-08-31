@@ -8,6 +8,7 @@ import { addUserIdToPost1661531322664 } from './migrations/1661531322664-addUser
 import { CreateCode1661789200651 } from './migrations/1661789200651-CreateCode'
 import { AddPostToCode1661789518704 } from './migrations/1661789518704-AddPostToCode'
 import { AddUserToCode1661789848635 } from './migrations/1661789848635-AddUserToCode'
+import { AddAvatarInfoInUser1661963650583 } from './migrations/1661963650583-AddAvatarInfoInUser'
 
 export const connection = new DataSource({
     type: "postgres",
@@ -25,6 +26,7 @@ export const connection = new DataSource({
         CreateCode1661789200651,
         AddPostToCode1661789518704,
         AddUserToCode1661789848635,
+        AddAvatarInfoInUser1661963650583,
     ],
     entities: [
         userEntitySchema,
