@@ -1,14 +1,14 @@
-import { Request, Response } from "express";
+import { IHttpRequest, IHttpResponse } from "../../../../../shared/infra/adapter/http/IHttpAdapter";
 import { UserUseCaseFactory } from "../../../domain/useCases/UserUseCaseFactory";
 
 
-export class UserController {
-    constructor(private _userUseCase: UserUseCaseFactory) { }
+export class CreateUserController {
+    constructor(private _useCaseFactory: UserUseCaseFactory) { }
 
-    public async index(request: Request, response: Response): Promise<Response> {
-        const { name, email, password } = request.body;
+    public async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
+        const { name, email, password } = httpRequest.body;
 
-        const createuser = this._userUseCase.getCreateUserUseCase();
+        const createuser = this._useCaseFactory.getCreateUserUseCase();
 
         const user = await createuser.execute({
             name,
@@ -16,6 +16,6 @@ export class UserController {
             password
         });
 
-        return response.json(user);
+        return { statusCode: 200, body: user };
     }
 }

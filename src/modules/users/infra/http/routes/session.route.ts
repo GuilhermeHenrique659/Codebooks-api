@@ -1,16 +1,13 @@
 import { celebrate } from "celebrate";
 import { Router } from "express";
-import { userUseCaseFactory } from "../../../domain/useCases";
+import { RouteAdapter } from "../../../../../shared/infra/adapter/http/expressRouteAdapter";
 import { userBody } from "../../../validation/userValidation";
-import { SessionController } from "../controllers/SessionController";
+import { userControllerFactory } from "../controllers/UserCOntrollerFactory";
 
 
 const sessionRouter = Router();
-const sessionController = new SessionController(userUseCaseFactory);
 
-sessionRouter.post("/", celebrate(userBody.createSessionIsValid()), (request, response) => {
-    return sessionController.create(request, response);
-})
+sessionRouter.post("/", celebrate(userBody.createSessionIsValid()), RouteAdapter(userControllerFactory.getSession()));
 
 
 export { sessionRouter };

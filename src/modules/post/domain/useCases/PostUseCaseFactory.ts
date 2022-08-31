@@ -19,7 +19,8 @@ export class PostUseCaseFactory {
     }
 }
 
-export const postRepository = new PostRepository(postRepositoryOrm);
+const postRepository = new PostRepository(postRepositoryOrm);
 const postUseCaseFactory = new PostUseCaseFactory(userRepository, postRepository);
+
 
 export { postUseCaseFactory };

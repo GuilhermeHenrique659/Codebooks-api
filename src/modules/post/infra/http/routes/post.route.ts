@@ -1,19 +1,14 @@
 import { Router } from "express";
+import { RouteAdapter } from "../../../../../shared/infra/adapter/http/expressRouteAdapter";
 import isAuthenticated from "../../../../../shared/infra/http/middleware/IsAuthenticated";
-import { postUseCaseFactory } from "../../../domain/useCases/PostUseCaseFactory";
-import { PostController } from "../controller/PostController";
+import { postControllerFactory } from "../controller/PostControllerFactory";
 
 
-const postController = new PostController(postUseCaseFactory);
 
 const postRouter = Router();
 
-postRouter.post("/", isAuthenticated, (request, response) => {
-    return postController.create(request, response);
-});
+postRouter.get('/', isAuthenticated, RouteAdapter(postControllerFactory.getIndex()));
 
-postRouter.get('/', isAuthenticated, (request, response) => {
-    return postController.index(request, response);
-});
+postRouter.post('/', isAuthenticated, RouteAdapter(postControllerFactory.getCreate()));
 
 export default postRouter;

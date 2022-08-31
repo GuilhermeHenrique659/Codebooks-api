@@ -20,7 +20,7 @@ export class Post {
 
     public updated_at?: Date;
 
-    constructor(props: Omit<Post, 'id' | 'created_at' | 'updated_at' | 'user'>,
+    constructor(props: Omit<Post, 'id' | 'created_at' | 'updated_at' | 'users'>,
         id?: string
     ) {
         Object.assign(this, props);
