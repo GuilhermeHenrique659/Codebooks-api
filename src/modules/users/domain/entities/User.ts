@@ -11,6 +11,14 @@ export class User implements IUser {
 
     public password: string;
 
+    public avatar?: string;
+
+    public city?: string;
+
+    public age?: Date;
+
+    public state?: string;
+
     public posts: Post[];
 
     constructor(props: Omit<User, 'id' | 'posts'>, id?: string) {
@@ -18,5 +26,7 @@ export class User implements IUser {
 
         if (!id)
             this.id = uuid();
+        else
+            this.id = id;
     }
 }
