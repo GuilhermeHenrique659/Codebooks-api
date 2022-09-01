@@ -7,8 +7,8 @@ import { postControllerFactory } from "../controller/PostControllerFactory";
 
 const postRouter = Router();
 
-postRouter.get('/', isAuthenticated, RouteAdapter(postControllerFactory.getIndex()));
+postRouter.get('/', isAuthenticated, RouteAdapter(postControllerFactory.getIndexController()));
 
-postRouter.post('/', isAuthenticated, RouteAdapter(postControllerFactory.getCreate()));
+postRouter.post('/', isAuthenticated, RouteAdapter(postControllerFactory.getCreateController()));
 
 export default postRouter;

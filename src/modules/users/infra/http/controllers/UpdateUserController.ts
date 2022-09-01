@@ -1,9 +1,10 @@
-import { IController } from "../../../../../shared/infra/adapter/http/IController";
+import { IController } from "../../../../../shared/factories/controller/IController";
+import { IAbstractUseCaseFactory } from "../../../../../shared/factories/useCase/AbstractUseCaseFactory";
 import { IHttpRequest, IHttpResponse } from "../../../../../shared/infra/adapter/http/IHttpAdapter";
-import { UserUseCaseFactory } from "../../../domain/useCases/UserUseCaseFactory";
+import { User } from "../../../domain/entities/User";
 
 export class UpdateUserController implements IController {
-    constructor(private _useCaseFactory: UserUseCaseFactory) { }
+    constructor(private _useCaseFactory: IAbstractUseCaseFactory<User>) { }
 
     public async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
         const { name, email,
@@ -11,7 +12,7 @@ export class UpdateUserController implements IController {
             age, avatar, city, state } = httpRequest.body;
         const { id } = httpRequest.params;
 
-        const updateUser = this._useCaseFactory.getUpdateUserUseCase();
+        const updateUser = this._useCaseFactory.getUpdateUseCase();
 
         const user = await updateUser.execute({
             name: name,

@@ -6,8 +6,8 @@ import { codeControllerFactory } from "../controller/CodeControllerFactory";
 
 const codeRouter = Router();
 
-codeRouter.post('/', isAuthenticated, RouteAdapter(codeControllerFactory.getCreate()));
+codeRouter.post('/', isAuthenticated, RouteAdapter(codeControllerFactory.getCreateController()));
 
-codeRouter.get('/:id', isAuthenticated, RouteAdapter(codeControllerFactory.getIndex()));
+codeRouter.get('/:id', isAuthenticated, RouteAdapter(codeControllerFactory.getIndexController()));
 
 export default codeRouter;

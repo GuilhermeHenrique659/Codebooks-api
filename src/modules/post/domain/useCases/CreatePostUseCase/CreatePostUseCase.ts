@@ -1,11 +1,12 @@
 import AppError from "../../../../../shared/errors/AppError";
+import { IUseCase } from "../../../../../shared/factories/useCase/IUseCase";
 import { IUserRepository } from "../../../../users/domain/repositories/IUserRepository";
 import { Post } from "../../entities/Post";
 import { IPostRepository } from "../../repositories/IPostRepository";
 import { ICreatePostUseCase } from "./CreatePostUseCaseDTO";
 
 
-export class CreatePostUseCase {
+export class CreatePostUseCase implements IUseCase<Post> {
     constructor(private postRepository: IPostRepository, private userRepository: IUserRepository) { }
 
     public async execute(data: ICreatePostUseCase): Promise<Post> {

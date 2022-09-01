@@ -1,4 +1,4 @@
-import { IHttpRequest, IHttpResponse } from "./IHttpAdapter";
+import { IHttpRequest, IHttpResponse } from "../../infra/adapter/http/IHttpAdapter";
 
 
 export interface IController {

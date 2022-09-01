@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IController } from "./IController";
+import { IController } from "../../../factories/controller/IController";
 import { IHttpRequest } from './IHttpAdapter';
 
 export const RouteAdapter = (controller: IController) => {

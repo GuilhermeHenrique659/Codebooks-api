@@ -1,14 +1,15 @@
+import { IAbstractUseCaseFactory } from "../../../../../shared/factories/useCase/AbstractUseCaseFactory";
 import { IHttpRequest, IHttpResponse } from "../../../../../shared/infra/adapter/http/IHttpAdapter";
-import { UserUseCaseFactory } from "../../../domain/useCases/UserUseCaseFactory";
+import { User } from "../../../domain/entities/User";
 
 
 export class CreateUserController {
-    constructor(private _useCaseFactory: UserUseCaseFactory) { }
+    constructor(private _useCaseFactory: IAbstractUseCaseFactory<User>) { }
 
     public async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
         const { name, email, password } = httpRequest.body;
 
-        const createuser = this._useCaseFactory.getCreateUserUseCase();
+        const createuser = this._useCaseFactory.getCreateUseCase();
 
         const user = await createuser.execute({
             name,

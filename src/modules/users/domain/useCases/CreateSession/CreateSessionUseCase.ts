@@ -1,11 +1,13 @@
 import AppError from "../../../../../shared/errors/AppError";
+import { IUseCase } from "../../../../../shared/factories/useCase/IUseCase";
 import { generateToken } from "../../../provider/auth/generateToken";
 import { IHashProvider } from "../../../provider/hash/IHashProvider";
+import { User } from "../../entities/User";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { ICreateSessionUseCaseDTO } from "./CreateSessionUseCaseDTO";
 
 
-export class CreateSessionUseCase {
+export class CreateSessionUseCase implements IUseCase<User>{
     private userRepository: IUserRepository;
     private hashProvider: IHashProvider;
 

@@ -8,8 +8,8 @@ import { userControllerFactory } from "../controllers/UserControllerFactory";
 
 const userRouter = Router();
 
-userRouter.post('/', celebrate(userBody.createUserIsValid()), RouteAdapter(userControllerFactory.getCreate()));
+userRouter.post('/', celebrate(userBody.createUserIsValid()), RouteAdapter(userControllerFactory.getCreateController()));
 
-userRouter.patch('/:id', isAuthenticated, RouteAdapter(userControllerFactory.getUpdate()));
+userRouter.patch('/:id', isAuthenticated, RouteAdapter(userControllerFactory.getUpdateController()));
 
 export default userRouter;
