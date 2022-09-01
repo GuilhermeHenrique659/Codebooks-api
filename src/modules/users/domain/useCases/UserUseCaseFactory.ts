@@ -2,6 +2,7 @@ import { IHashProvider } from "../../provider/hash/IHashProvider";
 import { IUserRepository } from "../repositories/IUserRepository";
 import { CreateSessionUseCase } from "./CreateSession/CreateSessionUseCase";
 import { CreateUserUseCase } from "./CreateUse/CreateUserCase";
+import { UpdateUserUseCase } from "./UpdateUser/UpdateUserUseCase";
 
 
 export class UserUseCaseFactory {
@@ -15,5 +16,9 @@ export class UserUseCaseFactory {
 
     public getCreateSessionUseCase(): CreateSessionUseCase {
         return new CreateSessionUseCase(this._userRepostiory, this._hashProvider);
+    }
+
+    public getUpdateUserUseCase(): UpdateUserUseCase {
+        return new UpdateUserUseCase(this._userRepostiory, this._hashProvider);
     }
 }

@@ -2,13 +2,12 @@ import { IHashProvider } from "./IHashProvider";
 
 
 
-export class HashProvider implements IHashProvider
-{
+export class HashProvider implements IHashProvider {
     public async compareHash(password: string, password_hashed: string): Promise<boolean> {
         return password === password_hashed;
     }
 
-    public async generateHash(password: string): Promise<String> {
+    public async generateHash(password: string): Promise<string> {
         return password;
     }
 }
