@@ -10,7 +10,7 @@ export class CreateSessionController {
     public async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
         const { email, password } = httpRequest.body;
 
-        const createSession = this._useCaseFactory.getCreateSessionUseCase()
+        const createSession = this._useCaseFactory.getSession()
 
         const token = await createSession.execute({ email, password });
 

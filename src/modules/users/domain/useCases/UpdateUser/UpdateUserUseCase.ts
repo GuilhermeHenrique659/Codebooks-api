@@ -1,11 +1,12 @@
 import AppError from "../../../../../shared/errors/AppError";
+import { IUseCase } from "../../../../../shared/factories/useCase/IUseCase";
 import { IHashProvider } from "../../../provider/hash/IHashProvider";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { IUpdateUserUseCaseDTO } from "./UpdateUserUseCaseDTO";
 
 
-export class UpdateUserUseCase {
+export class UpdateUserUseCase implements IUseCase<User> {
     constructor(private _userRespository: IUserRepository,
         private _hashProvider: IHashProvider) { }
 

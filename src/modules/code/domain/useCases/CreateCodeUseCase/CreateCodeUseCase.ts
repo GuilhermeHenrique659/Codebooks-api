@@ -1,4 +1,5 @@
 import AppError from "../../../../../shared/errors/AppError";
+import { IUseCase } from "../../../../../shared/factories/useCase/IUseCase";
 import { IPostRepository } from "../../../../post/domain/repositories/IPostRepository";
 import { IUserRepository } from "../../../../users/domain/repositories/IUserRepository";
 import { Code } from "../../entities/Code";
@@ -6,7 +7,7 @@ import { ICodeRepository } from "../../repositories/ICodeRepository";
 import { ICreateCodeUseCaseDTO } from "./CreateCodeUseCaseDTO";
 
 
-export class CreateCodeUseCase {
+export class CreateCodeUseCase implements IUseCase<Code> {
     constructor(private _codeRepository: ICodeRepository,
         private _userRepository: IUserRepository,
         private _postRepository: IPostRepository) { }

@@ -1,17 +1,18 @@
-import { IController } from "../../../../../shared/infra/adapter/http/IController";
+import { IController } from "../../../../../shared/factories/controller/IController";
+import { IAbstractUseCaseFactory } from "../../../../../shared/factories/useCase/AbstractUseCaseFactory";
 import { IHttpRequest, IHttpResponse } from "../../../../../shared/infra/adapter/http/IHttpAdapter";
-import { PostUseCaseFactory } from "../../../domain/useCases/PostUseCaseFactory";
+import { Post } from "../../../domain/entities/Post";
 
 
 export class CreatePostController implements IController {
-    constructor(private _useCaseFactory: PostUseCaseFactory) { }
+    constructor(private _useCaseFactory: IAbstractUseCaseFactory<Post>) { }
 
     public async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
 
         const { title, description } = httpRequest.body;
         const user_id = httpRequest.user.id;
 
-        const createPost = this._useCaseFactory.GetCreatePostUseCase();
+        const createPost = this._useCaseFactory.getCreateUseCase();
 
 
         const post = await createPost.execute({

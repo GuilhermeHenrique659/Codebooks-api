@@ -1,17 +1,28 @@
-import { codeUseCaseFactory, CodeUseCaseFactory } from "../../../domain/useCases/CodeUseCaseFactory";
+import { IAbstractControllerFactory } from "../../../../../shared/factories/controller/AbstractControllerFactory";
+import { IController } from "../../../../../shared/factories/controller/IController";
+import { IAbstractUseCaseFactory } from "../../../../../shared/factories/useCase/AbstractUseCaseFactory";
+import { Code } from "../../../domain/entities/Code";
+import { codeUseCaseFactory } from "../../../domain/useCases/CodeUseCaseFactory";
 import { CreateCodeController } from "./CreateCodeController";
 import { ListCodeController } from "./ListCodeController";
 
 
-export class CodeControllerFactory {
-    constructor(private _useCaseFactory: CodeUseCaseFactory) { }
+export class CodeControllerFactory implements IAbstractControllerFactory {
+    constructor(private _useCaseFactory: IAbstractUseCaseFactory<Code>) { }
 
-    public getIndex(): ListCodeController {
+    public getIndexController(): IController {
         return new ListCodeController(this._useCaseFactory);
     }
 
-    public getCreate(): CreateCodeController {
+    public getCreateController(): IController {
         return new CreateCodeController(this._useCaseFactory);
+    }
+    public getUpdateController(): IController {
+        throw new Error('Not implements');
+    }
+
+    public getDeleteController(): IController {
+        throw new Error('Not implements');
     }
 }
 
